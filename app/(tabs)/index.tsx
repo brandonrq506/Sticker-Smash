@@ -7,11 +7,13 @@ import { ImageViewer } from "@/components/ImageViewer";
 import { Button } from "@/components/Button";
 import { CircleButton } from "@/components/CircleButton";
 import { IconButton } from "@/components/IconButton";
+import { EmojiPicker } from "@/components/EmojiPicker";
 
 const PlaceholderImage = require("@/assets/images/background-image.png");
 
 export default function Index() {
   const [showAppOptions, setShowAppOptions] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | undefined>(
     undefined
   );
@@ -36,7 +38,11 @@ export default function Index() {
   };
 
   const onAddSticker = () => {
-    // we will implement this later
+    setIsModalVisible(true);
+  };
+
+  const onModalClose = () => {
+    setIsModalVisible(false);
   };
 
   const onSaveImageAsync = async () => {
@@ -77,6 +83,10 @@ export default function Index() {
           />
         </View>
       )}
+
+      <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
+        
+      </EmojiPicker>
     </View>
   );
 }
